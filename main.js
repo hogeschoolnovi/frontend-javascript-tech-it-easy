@@ -161,3 +161,140 @@ const inventory = [
     sold: 8,
   },
 ];
+
+//OPDRACHT 1
+
+function getTVTypeNames() {
+  let types = [];
+  inventory.forEach((tv) => {
+    types.push(tv.type);
+  });
+  return types;
+}
+
+console.log(getTVTypeNames());
+
+function getSoldOutTVs() {
+  return inventory.filter((tv) => {
+    if (tv.originalStock - tv.sold <= 0) {
+      return tv;
+    }
+  });
+}
+
+console.log(getSoldOutTVs());
+
+function getTVsWithAmbiLight() {
+  return inventory.filter((tv) => {
+    if (tv.options.ambiLight === true) {
+      return tv;
+    }
+  });
+}
+
+console.log(getTVsWithAmbiLight());
+
+function sortTVsPriceLowToHigh() {
+  return inventory.sort((a, b) => {
+      if (a.price > b.price) {
+        return 1;
+      } else if (b.price > a.price) {
+        return -1;
+      } else if(a.price === b.price) {
+        return 0;
+      }
+  });
+}
+
+console.log(sortTVsPriceLowToHigh());
+
+//OPDRACHT 2
+
+function numberOfTvsSold() {
+  let sold = 0;
+  inventory.forEach((tv) => {
+    sold += tv.sold;
+  });
+  return sold;
+}
+
+console.log(numberOfTvsSold());
+
+function numberOfTvsBought() {
+  let originalStock = 0;
+  inventory.forEach((tv) => {
+    originalStock += tv.originalStock;
+  });
+  return originalStock;
+}
+
+console.log(numberOfTvsBought());
+
+function numberOfTvsStock() {
+  let originalStock = 0;
+  let sold = 0;
+  inventory.forEach((tv) => {
+    originalStock += tv.originalStock;
+    sold += tv.sold;
+  });
+
+  return originalStock - sold;
+}
+
+console.log(numberOfTvsStock());
+
+document.getElementById("amount-sold").innerHTML = numberOfTvsSold();
+document.getElementById("amount-bought").innerHTML = numberOfTvsBought();
+document.getElementById("amount-stock").innerHTML = numberOfTvsStock();
+
+//OPDRACHT 3
+
+function getAndDisplayBrands(inventory) {
+  let list = '';
+  inventory.forEach((tv) => {
+    list += `<li>${tv.brand}</li>`
+  });
+
+  document.getElementById("brands").innerHTML = list;
+}
+
+
+//OPDRACHT 4
+function getName(tv) {
+  return `${tv.brand} ${tv.type} - ${tv.name}`;
+}
+
+function getPrice(tv) {
+  return `€${tv.price},-`;
+}
+
+
+function getAvailableSizes(sizes) {
+  let displayedSizes = '';
+  sizes.forEach((size, index) => {
+    displayedSizes += `${size} inch (${inchToCm(size)} cm)`;
+    if (index !== (sizes.length - 1) && sizes.length > 1) {
+      displayedSizes += ' | ';
+    }
+  });
+  return displayedSizes;
+}
+
+function inchToCm(inch) {
+  return inch * 2.54;
+}
+
+function TVDisplayGenerator(inventory) {
+  let generated = '';
+  inventory.forEach((tv) => {
+    generated += getName(tv) + '<br />';
+    generated += getPrice(tv) + '<br />';
+    generated += getAvailableSizes(tv.availableSizes) + '<br />';
+    generated += '<br />';
+  });
+
+  document.getElementById("tvs").innerHTML = generated;
+}
+
+getAndDisplayBrands(inventory);
+TVDisplayGenerator(inventory);
