@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+}
+
+#sold {
+  color: green;
+}
+
+#bought {
+  color: blue;
+}
+
+#tosell {
+  color: red;
+}

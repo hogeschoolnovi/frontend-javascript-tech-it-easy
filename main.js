@@ -1,5 +1,5 @@
 // VOORRAAD ARRAY MET TV'S
-const inventory = [
+let inventory = [
   {
     type: '43PUS6504/12',
     name: '4K TV',
@@ -161,3 +161,18 @@ const inventory = [
     sold: 8,
   },
 ];
+
+function sortPrice() {
+  const newInv = getSorted(inventory);
+  displayInfo(newInv);
+}
+
+function sortAmbi() {
+  const newInv = getSorted(inventory);
+  displayInfo(newInv);
+}
+
+function sortSold() {
+  const newInv = sortSoldTV(inventory);
+  displayInfo(newInv);
+}
