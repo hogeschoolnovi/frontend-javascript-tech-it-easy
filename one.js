@@ -17,9 +17,7 @@ function sortSoldTV(arr) {
 }
 
 function getAmbi(arr) {
-  return arr.filter((tv) => {
-    return tv.options.ambiLight;
-  });
+  return arr.filter((tv) => tv.originalStock === tv.sold);
 }
 
 function getSorted(arr) {

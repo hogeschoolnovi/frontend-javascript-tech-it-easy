@@ -1,21 +1,9 @@
 function alreadySold(arr) {
-  let sold = 0;
-
-  arr.forEach((tv) => {
-    sold += tv.sold;
-  });
-
-  return sold;
+  return arr.reduce((a, b) => a + b.sold, 0);
 }
 
 function bought(arr) {
-  let bought = 0;
-
-  arr.forEach((tv) => {
-    bought += tv.originalStock;
-  });
-
-  return bought
+  return arr.reduce((a, b) => a + b.originalStock, 0);
 }
 
 document.getElementById('sold').innerHTML = `Already sold: ${alreadySold(inventory)}`;

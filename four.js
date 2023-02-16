@@ -7,13 +7,13 @@ function formatPrice(price) {
 }
 
 function screenSizes(tv) {
-  let sizes = '';
+  let sizes = [];
 
   tv.availableSizes.forEach((size) => {
-    sizes += `${size} inch (${Math.floor(size  * 2.54)} cm) | `;
+    sizes.push(`${size} inch (${Math.floor(size  * 2.54)} cm)`);
   });
 
-  return sizes.substring(0, sizes.length - 3)
+  return sizes.join(' | ');
 }
 
 
